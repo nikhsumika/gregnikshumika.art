@@ -42,7 +42,7 @@
   ];
 
   const BIO = "Above average future Sotheby’s artist. Maybe. Sarcastic. Chaotic good. Dark arts. Attempts at hope. My eyes were connected directly to my heart in a bizarre birth accident.";
-  const PRACTICE = "I work across three mediums: spreadsheet software as a visual art tool, AI-assisted interactive games and art pages, and pixel collage. The work explores beauty, metanoia, loneliness, consciousness, and the quiet tragicomedy of my own life, treating corporate and digital tools as spaces for contemplation rather than productivity.";
+  const PRACTICE = "I work across three mediums: spreadsheet software as a visual art tool, AI-assisted interactive games and art pages, and pixel collage. The work explores beauty, metanoia, loneliness, consciousness, and the quiet tragicomedy of my own life, treating corporate and digital tools for contemplation rather than productivity.";
   const years = works.map((w) => w.yearNum).filter(Boolean);
 
   const ABOUT = [
