@@ -39,6 +39,15 @@
 }
 
 html, body { height: 100%; }
+
+/* Plain-HTML profile for search engines and link previews (scripts/build_static.py).
+   The spreadsheet replaces it once scripts run; without scripts it is readable. */
+html.js .static-profile { display: none; }
+.static-profile { max-width: 760px; padding: 24px; font: 15px/1.6 var(--nk-font); color: var(--nk-text); }
+.static-profile h2 { font-size: 26px; margin: 0 0 8px; color: var(--nk-primary-dark); }
+.static-profile h3 { font-size: 17px; margin: 22px 0 6px; color: var(--nk-primary-dark); }
+.static-profile ul { margin: 0; padding-left: 20px; }
+.static-profile a { color: var(--nk-link); }
 body { height: 100dvh; }
 button { font-family: var(--nk-font); }
 
