@@ -1,0 +1,9 @@
+# Private: never publish (the repository is public for GitHub Pages)
+MARKET-NOTES.md
+README.md
+data/
+scripts/
+
+# System and tool files
+.DS_Store
+.claude/

@@ -1,0 +1,564 @@
+/* ============================================================
+   Nikshumika Spreadsheet — Reusable Style System
+   Extracted from "A Calendar of Wisdom.nksh"
+   ============================================================
+   Usage: link this CSS, then follow the DOM structure in
+   template.html. Override any --nk-* variable on :root
+   to retheme.
+   ============================================================ */
+
+/* ── 1. Design Tokens ─────────────────────────────────────── */
+
+:root {
+  /* Primary */
+  --nk-primary:           #217346;
+  --nk-primary-hover:     #1a5c38;
+  --nk-primary-dark:      #1f4e2f;
+
+  /* Backgrounds */
+  --nk-bg-body:           #e6e6e6;
+  --nk-bg-ribbon:         #f3f3f3;
+  --nk-bg-formula:        #f9f9f9;
+  --nk-bg-header:         #f5f5f5;
+  --nk-bg-cell-empty:     #fcfcfc;
+  --nk-bg-cell-header:    #e2efda;
+  --nk-bg-row-hover:      #e8f5e9;
+  --nk-bg-month:          #f4faf5;
+  --nk-bg-today:          #fff9e6;
+  --nk-bg-cell:           white;
+
+  /* Borders */
+  --nk-border-major:      #d0d0d0;
+  --nk-border-header:     #c0c0c0;
+  --nk-border-cell:       #e8e8e8;
+  --nk-border-row-header: #e4e4e4;
+  --nk-border-col-header: #e0e0e0;
+
+  /* Text */
+  --nk-text:              #212121;
+  --nk-text-secondary:    #333;
+  --nk-text-dim:          #555;
+  --nk-text-muted:        #777;
+  --nk-text-faint:        #888;
+  --nk-text-ghost:        #999;
+  --nk-text-header:       var(--nk-primary-dark);
+  --nk-text-accent:       var(--nk-primary);
+
+  /* Typography */
+  --nk-font:              'Segoe UI', Calibri, Arial, sans-serif;
+  --nk-font-size-base:    12px;
+  --nk-font-size-xs:      10px;
+  --nk-font-size-sm:      10.5px;
+  --nk-font-size-md:      11px;
+
+  /* Fixed heights */
+  --nk-h-title-bar:       30px;
+  --nk-h-ribbon-tabs:     24px;
+  --nk-h-formula-bar:     24px;
+  --nk-h-row:             21px;
+  --nk-h-col-header:      21px;
+  --nk-h-sheet-tabs:      25px;
+  --nk-h-status-bar:      22px;
+
+  /* Row-header width */
+  --nk-w-row-header:      36px;
+  --nk-w-name-box:        72px;
+
+  /* Scrollbar */
+  --nk-scrollbar-size:    12px;
+  --nk-scrollbar-track:   #f0f0f0;
+  --nk-scrollbar-thumb:   #c0c0c0;
+  --nk-scrollbar-hover:   #aaa;
+
+  /* Mode-button defaults */
+  --nk-mode-btn-bg:       #333;
+  --nk-mode-btn-text:     #aaa;
+  --nk-mode-btn-border:   #555;
+}
+
+
+/* ── 2. Reset & Base ──────────────────────────────────────── */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--nk-font);
+  font-size: var(--nk-font-size-base);
+  background: var(--nk-bg-body);
+  color: var(--nk-text);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+
+/* ── 3. Title Bar ─────────────────────────────────────────── */
+
+.title-bar {
+  background: var(--nk-primary);
+  color: white;
+  height: var(--nk-h-title-bar);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: var(--nk-font-size-base);
+  gap: 10px;
+  flex-shrink: 0;
+}
+.title-bar .icon     { font-size: 14px; font-weight: bold; }
+.title-bar .title    { opacity: 0.95; font-size: var(--nk-font-size-md); }
+.title-bar .window-controls {
+  margin-left: auto;
+  display: flex;
+}
+.title-bar .window-controls span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: var(--nk-h-title-bar);
+  font-size: var(--nk-font-size-xs);
+  opacity: 0.8;
+  cursor: default;
+}
+
+
+/* ── 4. Ribbon Tabs ───────────────────────────────────────── */
+
+.ribbon-tabs {
+  background: var(--nk-primary);
+  display: flex;
+  padding: 0 8px;
+  height: var(--nk-h-ribbon-tabs);
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.ribbon-tabs span {
+  padding: 3px 12px 4px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: var(--nk-font-size-sm);
+  cursor: default;
+}
+.ribbon-tabs span.active {
+  background: var(--nk-bg-ribbon);
+  color: var(--nk-text-dim);
+  border-radius: 3px 3px 0 0;
+}
+.ribbon-collapse-line {
+  height: 3px;
+  background: var(--nk-bg-ribbon);
+  border-bottom: 1px solid var(--nk-border-major);
+  flex-shrink: 0;
+}
+
+
+/* ── 5. Formula Bar ───────────────────────────────────────── */
+
+.formula-bar {
+  background: var(--nk-bg-formula);
+  border-bottom: 1px solid var(--nk-border-major);
+  height: var(--nk-h-formula-bar);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.name-box {
+  width: var(--nk-w-name-box);
+  height: var(--nk-h-formula-bar);
+  border-right: 1px solid var(--nk-border-major);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--nk-font-size-md);
+  font-weight: 500;
+  color: var(--nk-text-secondary);
+  background: var(--nk-bg-cell);
+}
+.fx-label {
+  padding: 0 8px;
+  font-style: italic;
+  color: var(--nk-text-muted);
+  font-size: var(--nk-font-size-md);
+  border-right: 1px solid var(--nk-border-major);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.formula-content {
+  flex: 1;
+  padding: 0 8px;
+  font-size: var(--nk-font-size-md);
+  color: var(--nk-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* ── 6. Sheet Area (main layout) ──────────────────────────── */
+
+.sheet-area {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  background: var(--nk-bg-cell-empty);
+}
+
+.row-headers {
+  width: var(--nk-w-row-header);
+  background: var(--nk-bg-header);
+  border-right: 1px solid var(--nk-border-header);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.row-header-corner {
+  height: var(--nk-h-col-header);
+  background: #f0f0f0;
+  border-bottom: 1px solid var(--nk-border-header);
+}
+
+.grid-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  background: var(--nk-bg-cell-empty);
+}
+
+
+/* ── 7. Column & Row Headers ──────────────────────────────── */
+
+.col-headers {
+  display: flex;
+  height: var(--nk-h-col-header);
+  background: var(--nk-bg-header);
+  border-bottom: 1px solid var(--nk-border-header);
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.col-h {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--nk-font-size-xs);
+  color: var(--nk-text-faint);
+  border-right: 1px solid var(--nk-border-col-header);
+  flex-shrink: 0;
+  position: relative;
+}
+.row-h {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--nk-font-size-xs);
+  color: var(--nk-text-faint);
+  border-bottom: 1px solid var(--nk-border-row-header);
+  height: var(--nk-h-row);
+  position: relative;
+}
+
+
+/* ── 8. Resize Handles ────────────────────────────────────── */
+
+.col-h .col-resize-handle {
+  position: absolute;
+  right: -3px;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 20;
+}
+.col-h .col-resize-handle:hover,
+.col-h .col-resize-handle.dragging {
+  background: var(--nk-primary);
+  opacity: 0.5;
+}
+.row-h .row-resize-handle {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  cursor: row-resize;
+  z-index: 20;
+}
+.row-h .row-resize-handle:hover,
+.row-h .row-resize-handle.dragging {
+  background: var(--nk-primary);
+  opacity: 0.5;
+}
+.resize-line-col {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  border-left: 1px dashed var(--nk-primary);
+  z-index: 100;
+  pointer-events: none;
+}
+.resize-line-row {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px dashed var(--nk-primary);
+  z-index: 100;
+  pointer-events: none;
+}
+
+
+/* ── 9. Grid Rows & Cells ─────────────────────────────────── */
+
+.grid-rows { flex: 1; }
+
+.grid-row {
+  display: flex;
+  border-bottom: 1px solid var(--nk-border-cell);
+}
+
+.cell {
+  border-right: 1px solid var(--nk-border-cell);
+  padding: 2px 6px;
+  font-size: var(--nk-font-size-md);
+  color: var(--nk-text);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  height: var(--nk-h-row);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Selected cell */
+.cell.selected {
+  outline: 2px solid var(--nk-primary);
+  outline-offset: -1px;
+  background: var(--nk-bg-cell);
+  z-index: 2;
+  position: relative;
+}
+
+/* Header cell (column/row labels inside the grid) */
+.cell.header-cell {
+  font-weight: 700;
+  background: var(--nk-bg-cell-header);
+  color: var(--nk-text-header);
+}
+
+/* Empty cell */
+.cell.c-empty {
+  background: var(--nk-bg-cell-empty);
+}
+
+/* Overflow-visible cell (text spills past column boundary) */
+.cell.flow {
+  overflow: visible;
+  white-space: nowrap;
+  z-index: 1;
+  position: relative;
+}
+
+
+/* ── 10. Data-type Cell Variants ──────────────────────────── */
+
+.cell.c-date {
+  color: var(--nk-text-dim);
+  white-space: normal;
+  word-wrap: break-word;
+}
+.cell.c-number {
+  justify-content: flex-end;
+  font-variant-numeric: tabular-nums;
+}
+.cell.c-muted {
+  color: var(--nk-text-ghost);
+  font-size: var(--nk-font-size-xs);
+}
+.cell.c-accent {
+  font-weight: 700;
+  color: var(--nk-text-accent);
+}
+.cell.c-bold {
+  font-weight: 600;
+}
+.cell.c-italic {
+  font-style: italic;
+}
+.cell.c-wrap {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+
+/* ── 11. Table-row Variants (All-items view) ──────────────── */
+
+.data-row .cell          { height: 28px; font-size: var(--nk-font-size-md); }
+.data-row .cell.dr-num   { justify-content: flex-end; color: var(--nk-text-ghost); padding-right: 8px; font-size: var(--nk-font-size-xs); }
+.data-row .cell.dr-label { font-weight: 700; color: var(--nk-primary); background: var(--nk-bg-month); font-size: var(--nk-font-size-xs); }
+.data-row .cell.dr-dim   { justify-content: center; color: var(--nk-text-muted); font-size: var(--nk-font-size-xs); }
+.data-row .cell.dr-text  { color: var(--nk-text-secondary); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+.data-row .cell.dr-bold  { font-weight: 600; color: var(--nk-primary-dark); }
+.data-row .cell.dr-faint { color: var(--nk-text-ghost); font-size: var(--nk-font-size-xs); }
+
+.data-row:hover .cell {
+  background: var(--nk-bg-row-hover) !important;
+}
+.data-row.dr-highlight .cell {
+  background: var(--nk-bg-today) !important;
+  font-weight: 500;
+}
+.data-row.dr-highlight .cell.dr-text { font-weight: 400; }
+
+
+/* ── 12. Sheet Tabs (bottom bar) ──────────────────────────── */
+
+.sheet-tabs {
+  background: var(--nk-bg-body);
+  height: var(--nk-h-sheet-tabs);
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--nk-border-header);
+  padding: 0 6px;
+  gap: 1px;
+  flex-shrink: 0;
+}
+.sheet-tab-nav {
+  display: flex;
+  gap: 1px;
+  margin-right: 6px;
+}
+.sheet-tab-nav span {
+  font-size: 9px;
+  color: var(--nk-text-ghost);
+  padding: 0 3px;
+}
+.sheet-tab {
+  padding: 3px 16px;
+  font-size: var(--nk-font-size-md);
+  background: var(--nk-bg-cell);
+  border: 1px solid var(--nk-border-header);
+  border-bottom: 1px solid var(--nk-bg-cell);
+  border-radius: 3px 3px 0 0;
+  color: var(--nk-text-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  bottom: -1px;
+}
+.sheet-tab.inactive {
+  background: #e8e8e8;
+  color: #666;
+  font-weight: 400;
+  border-bottom: 1px solid var(--nk-border-header);
+}
+.sheet-tab:hover:not(.active-tab) {
+  background: #dde8dd;
+}
+
+
+/* ── 13. Mode / Toggle Buttons ────────────────────────────── */
+
+.mode-buttons {
+  margin-left: auto;
+  display: flex;
+  gap: 3px;
+  padding-right: 8px;
+}
+.mode-btn {
+  padding: 3px 14px;
+  font-size: var(--nk-font-size-xs);
+  font-family: var(--nk-font);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  background: var(--nk-mode-btn-bg);
+  color: var(--nk-mode-btn-text);
+  border: 1px solid var(--nk-mode-btn-border);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.mode-btn:hover {
+  background: #444;
+  color: #ddd;
+}
+.mode-btn.active {
+  background: var(--nk-primary);
+  color: white;
+  border-color: var(--nk-primary);
+}
+/* Per-button color overrides — add your own as needed:
+   .mode-btn.danger.active  { background: #cc0000; border-color: #cc0000; }
+   .mode-btn.special.active { background: #8b00ff; border-color: #8b00ff; }
+*/
+
+
+/* ── 14. Status Bar ───────────────────────────────────────── */
+
+.status-bar {
+  background: var(--nk-primary);
+  height: var(--nk-h-status-bar);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--nk-font-size-xs);
+  flex-shrink: 0;
+}
+.status-bar .right {
+  margin-left: auto;
+  display: flex;
+  gap: 14px;
+}
+
+
+/* ── 15. Custom Scrollbar ─────────────────────────────────── */
+
+.grid-area::-webkit-scrollbar       { width: var(--nk-scrollbar-size); height: var(--nk-scrollbar-size); }
+.grid-area::-webkit-scrollbar-track  { background: var(--nk-scrollbar-track); }
+.grid-area::-webkit-scrollbar-thumb  { background: var(--nk-scrollbar-thumb); border-radius: 0; }
+.grid-area::-webkit-scrollbar-thumb:hover { background: var(--nk-scrollbar-hover); }
+
+
+/* ── 16. Keyframe Animations ──────────────────────────────── */
+
+@keyframes nk-blink {
+  50% { opacity: 0; }
+}
+@keyframes nk-acid-pulse {
+  0%   { background: inherit; }
+  25%  { background: rgba(255, 0, 102, 0.13); }
+  50%  { background: rgba(0, 255, 102, 0.13); }
+  75%  { background: rgba(102, 0, 255, 0.13); }
+  100% { background: inherit; }
+}
+
+
+/* ── 17. Column-width Utility Classes ─────────────────────── */
+/* Define as many as your app needs. Widths are easily
+   overridden inline or via JS when columns are resized. */
+
+.w-a { width: 36px;  }
+.w-b { width: 80px;  }
+.w-c { width: 140px; }
+.w-d { width: 120px; }
+.w-e { width: 160px; }
+.w-f { width: 120px; }
+.w-g { width: 80px;  }
+.w-h { width: 80px;  }
+.w-i { width: 80px;  }
+
+
+/* ── 18. Responsive ───────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  .w-d { width: 260px; min-width: 180px; }
+  .w-e { width: 110px; }
+  .w-f { width: 80px;  }
+  .w-g, .w-h, .w-i { width: 60px; }
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gregory Nikshumika</title>
+  <meta name="description" content="portfolio.nksh — selected works by Gregory Nikshumika on SuperRare and Tezos, 2023–2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nikshumika-spreadsheet.css">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="front.css">
+</head>
+<body>
+
+<!-- ── Title Bar ─────────────────────────────────────────── -->
+<header class="title-bar">
+  <span class="icon">✦</span>
+  <h1 class="title"><span class="file">portfolio.nksh</span> — Selected Works <span class="by">by Gregory Nikshumika</span></h1>
+  <div class="window-controls" aria-hidden="true"><span>─</span><span>☐</span><span>✕</span></div>
+</header>
+
+<!-- ── Ribbon Tabs ───────────────────────────────────────── -->
+<nav class="ribbon-tabs" id="ribbonTabs" aria-label="Menu">
+  <span data-menu="file" role="button" tabindex="0">File</span>
+  <span data-menu="home" role="button" tabindex="0" class="active">Home</span>
+  <span data-menu="data" role="button" tabindex="0">Data</span>
+  <span data-menu="view" role="button" tabindex="0">View</span>
+</nav>
+<div class="ribbon-collapse-line"></div>
+
+<!-- ── Formula Bar ───────────────────────────────────────── -->
+<div class="formula-bar">
+  <div class="name-box" id="nameBox">A1</div>
+  <div class="fx-label">fx</div>
+  <input type="text" class="formula-content" id="formulaContent" spellcheck="false" autocomplete="off"
+         aria-label="Formula bar. Type to search works" placeholder="Type to search titles and notes…">
+</div>
+
+<!-- ── Sheet Area ────────────────────────────────────────── -->
+<main class="sheet-area" id="sheetArea">
+  <div class="grid-area" id="gridArea"></div>
+
+  <aside class="pane" id="pane" hidden aria-label="Artwork">
+    <div class="pane-head">
+      <span class="pane-ref" id="paneRef">B2</span>
+      <span class="pane-name">Artwork</span>
+      <button type="button" class="pane-x" id="paneClose" aria-label="Close pane">✕</button>
+    </div>
+    <div class="pane-body" id="paneBody"></div>
+    <div class="pane-nav">
+      <button type="button" class="mode-btn" id="panePrev" aria-label="Previous work">◁ Prev</button>
+      <span id="panePos"></span>
+      <button type="button" class="mode-btn" id="paneNext" aria-label="Next work">Next ▷</button>
+    </div>
+  </aside>
+</main>
+
+<!-- ── Sheet Tabs ────────────────────────────────────────── -->
+<div class="sheet-tabs">
+  <div class="sheet-tab-nav" aria-hidden="true"><span>◁</span><span>▷</span></div>
+  <nav class="sheet-tab-list" id="sheetTabs" aria-label="Sheets"></nav>
+  <div class="mode-buttons">
+    <button type="button" class="mode-btn" id="btnRandom" title="Open a random work (R)">Random</button>
+  </div>
+</div>
+
+<!-- ── Status Bar ────────────────────────────────────────── -->
+<footer class="status-bar">
+  <span id="statusText">Ready</span>
+  <div class="right">
+    <span id="statusInfo"></span>
+    <span class="zoom">100%</span>
+  </div>
+</footer>
+
+<div class="menu-drop" id="menuDrop" role="menu"></div>
+<div class="menu-drop filter-drop" id="filterDrop" role="dialog" aria-label="Filter"></div>
+<div class="chart-tip" id="chartTip" hidden role="tooltip"></div>
+
+<noscript>
+  <p style="padding:16px">Gregory Nikshumika — works on
+    <a href="https://superrare.com/gregorynikshumika">SuperRare</a> and
+    <a href="https://objkt.com/@gregnikshumika.bsky.social/created">objkt</a> ·
+    <a href="https://x.com/GregNikshumika">X</a> ·
+    <a href="mailto:gregorynikshumika@gmail.com">gregorynikshumika@gmail.com</a></p>
+</noscript>
+
+<script src="works.js"></script>
+<script src="market.js"></script>
+<script src="market-sheet.js"></script>
+<script src="front-sheet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
